@@ -1,0 +1,98 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  background: url("UMC\ 뭔가\ 간지나는\ 배경1\ 2.svg") no-repeat center;
+  background-size: cover;
+}
+
+.background {
+  display: flex;
+  background-color: rgba(255, 255, 255, 0.705);
+  opacity: 0.8;
+  width: 55vw;
+  height: 60vh;
+  text-align: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-radius: 13px;
+}
+
+h1 {
+  width: 40%;
+  margin-bottom: 0.6em;
+  padding: 0.2em;
+  font-size: 3.5em;
+  border-bottom: 0.05em solid white;
+}
+
+.login input {
+  width: 100%;
+  padding: 20px 10px 10px;
+  background-color: transparent;
+  border: none;
+  border-bottom: 0.05em solid white;
+  font-size: 1.3em; color: white;
+  outline: none;
+}
+
+.login input::placeholder {
+  color: white;
+  font-weight: lighter;
+}
+
+.login-button {
+  margin-top: 2.5em;
+  text-align: center;
+  align-items: center;
+}
+
+.login-button button {
+  width: 20vw;
+  height: 8vh;
+  background-color: rgba(0, 0, 0, 0.596);
+  color: white;
+  font-size: 25px;
+  border: none;
+  border-radius: 13px;
+}
+
+footer {
+  width: 30vw;
+  height: 15vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+  margin-top: 0.5em;
+}
+
+footer ul {
+  list-style-type: none;
+  margin-top: 2em;
+}
+
+footer ul li {
+  float: left;
+  padding-right: 3em;
+  padding-left: 3em;
+  border-right: 0.3em solid rgba(0, 0, 0, 0.185);
+}
+
+footer ul li:last-child {
+  border: none;
+}
+
+footer ul li a {
+  font-size: 1em;
+  color: black;
+  text-decoration-line: none;
+}
