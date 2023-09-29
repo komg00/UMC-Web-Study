@@ -76,3 +76,38 @@ div {
   border-radius: 13px;
   cursor: pointer;
 }
+
+#modalWrap {
+  position: fixed;
+  display: none;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.4);
+  justify-content: center;
+  align-items: center;
+}
+
+#modal {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50vw;
+  height: 20vh;
+  padding: 30px 30px;
+  margin: 0 auto;
+  background-color: #fff;
+  border-radius: 25px;
+}
+
+#closeButton {
+  width: 6vw;
+  height: 3vh;
+  float: right;
+  background-color: rgb(255, 255, 255);
+  border: 1px solid rgb(228, 228, 228);
+  border-radius: 10px;
+  cursor: pointer;
+}
