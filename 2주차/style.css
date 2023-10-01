@@ -9,8 +9,9 @@ body {
   align-items: center;
   width: 100vw;
   height: 100vh;
-  background: url("UMC\ 뭔가\ 간지나는\ 배경1\ 2.svg") no-repeat center;
+  background-image: url("UMC\ 뭔가\ 간지나는\ 배경1\ 2.svg");
   background-size: cover;
+  background-repeat: no-repeat;
   overflow: hidden;
 }
 
@@ -69,10 +70,12 @@ div {
   color: white;
   border: 1px solid white;
   border-radius: 3px;
-  padding: 5px;
+  padding: 7px;
 }
 
 .error {
+  width: 300px;
+  height: 8px;
   display: flex;
   float: left;
   font-size: 0.8em;
