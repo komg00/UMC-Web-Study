@@ -1,34 +1,23 @@
 import { movies } from "./movieDummy";
-import {
-  MovieContainer,
-  MovieImage,
-  Info,
-  MovieTitle,
-  VoteAverage,
-  Overview,
-  PosterUrl,
-  OverviewInfo,
-} from "./Components/Movie/Movie.style.jsx";
+import Movie from "./Components/Movie/Movie";
+import * as S from "./Components/Movie/Movie.style";
 
 function App() {
   return (
-    <div className="container">
-      {movies.results.map((item) => (
-        <MovieContainer key={item.id}>
-          <MovieImage src={PosterUrl + item.poster_path} alt="영화 포스터" />
-          <Info>
-            <MovieTitle>{item.title}</MovieTitle>
-            <VoteAverage>{item.vote_average}</VoteAverage>
-          </Info>
-          <Overview>
-            <OverviewInfo>
-              <p>{item.title}</p>
-              <p>{item.overview}</p>
-            </OverviewInfo>
-          </Overview>
-        </MovieContainer>
-      ))}
-    </div>
+    <S.Body>
+      <S.Container>
+        {movies.results.map((item) => {
+          return (
+            <Movie
+              title={item.title}
+              poster_path={item.poster_path}
+              vote_average={item.vote_average}
+              overview={item.overview}
+            />
+          );
+        })}
+      </S.Container>
+    </S.Body>
   );
 }
 

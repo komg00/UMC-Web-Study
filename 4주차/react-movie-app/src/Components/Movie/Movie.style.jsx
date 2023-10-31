@@ -1,28 +1,36 @@
 import styled from 'styled-components';
 
-export const PosterUrl = "https://image.tmdb.org/t/p/w1280/"
+export const Body = styled.body`
+  background-color: #22254b;;
+`;
+
+export const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  position: relative;
+`;
 
 export const MovieContainer = styled.div`
   width: 250px;
   margin: 16px;
-  color: white;
-  border-radius: 5px;
-  background-color: #373b69;
-  border-radius: 5px;
-  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
   position: relative;
+  color: white;
+  background-color: #373b69;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
 `;
 
 export const MovieImage = styled.img`
   max-width: 100%;
+  position: relative;
 `;
 
 export const Info = styled.div`
   display: flex;
-  flex-wrap: wrap;
+  padding: 20px;
   justify-content: space-between;
   align-items: center;
-  padding: 20px;
+  position: relative;
 `;
 
 export const MovieTitle = styled.h4`
@@ -34,23 +42,25 @@ export const VoteAverage = styled.span`
 `;
 
 export const Overview = styled.div`
-  overflow-y: auto;
-  display: none;
-  width: 250px;
-  height: 420px;
+  width: 100%;
+  height: 100%;
   position: absolute;
+  display: none;
+  top: 0;
+  left: 0;
   background-color: rgba(0, 0, 0, 0.8);
-  color: white;
-  margin-top: -420px;
   opacity: 0.9;
+  overflow: auto;
   ${MovieContainer}:hover & {
-      display: flex;
-      overflow-y: auto;
-  }
+    display: block;
+  } 
 `;
 
-export const OverviewInfo = styled.div`
-  overflow-y: auto;
-  margin: 12px;
+export const OverviewTitle = styled.h4`
+  margin: 25px 15px 10px;
 `;
 
+export const OverviewInfo = styled.p`
+  overflow: auto;
+  padding: 15px;
+`;

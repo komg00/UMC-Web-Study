@@ -1,22 +1,21 @@
 import React from "react";
+import * as S from "./Movie.style"
 
-const PosterUrl = "https://image.tmdb.org/t/p/w1280/"
+const PosterUrl = "https://image.tmdb.org/t/p/w1280/";
 
-function Movie({title, poster_path, vote_average, overview_title, overview}) {
+function Movie({title, poster_path, vote_average, overview}) {
   return (
-    <div className="contents">
-      <img src={PosterUrl + poster_path} alt="영화 포스터" />
-      <div className="info">
-        <h4>{title}</h4>
-        <span>{vote_average}</span>
-      </div>
-      <div className="overview">
-        <div className="overview-info">
-          <p>{overview_title}</p>
-          <p>{overview}</p>
-        </div>
-      </div>
-    </div>
+    <S.MovieContainer>
+      <S.MovieImage src={PosterUrl + poster_path} alt="영화 포스터" />
+      <S.Info>
+        <S.MovieTitle>{title}</S.MovieTitle>
+        <S.VoteAverage>{vote_average}</S.VoteAverage>
+      </S.Info>
+      <S.Overview>
+        <S.OverviewTitle>{title}</S.OverviewTitle>
+        <S.OverviewInfo>{overview}</S.OverviewInfo>
+      </S.Overview>
+    </S.MovieContainer>
   );
 }
 
