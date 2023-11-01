@@ -1,0 +1,117 @@
+.header {
+  display: flex;
+  align-items: center;
+  background-color: #032541;
+  width: 100%;
+}
+
+.background-img {
+  margin-left: 170px;
+}
+
+.list {
+  list-style-type: none;
+  display: flex;
+  align-items: center
+}
+
+.list1, .list2, .list3 {
+  padding: 10px 20px;
+  font-size: 20px;
+}
+
+a {
+  text-decoration-line: none;
+  color: white;
+}
+
+.Ad-img {
+  width: 100%;
+}
+
+.login {
+  display: flex;
+  align-items: center;
+}
+
+.login-control {
+  border-radius: 15px;
+  width: 80px;
+  height: 30px;
+}
+
+.login-text{
+  margin-left: 10px;
+  color: white;
+}
+/*
+body {
+  background-color: #22254b;
+}
+
+
+.contents {
+  width: 250px;
+  margin: 16px;
+  color: white;
+  border-radius: 5px;
+  background-color: #373b69;
+  border-radius: 5px;
+  box-shadow: 3px 3px 5px rgba(0, 0, 0, 0.1);
+}
+
+.contents img {
+  max-width: 100%;
+}
+
+.container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px;
+}
+
+.info h4 {
+  margin: 0;
+}
+
+.info span {
+  margin-left: 3px;
+}
+
+.movie-container {
+  width: 250px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.overview {
+  display: none;
+  width: 220px;
+  min-height: 420px;
+  position: absolute;
+  justify-content: space-between;
+  align-items:flex-start;
+  background-color: rgba(0, 0, 0, 0.8);
+  color: white;
+  margin-top: 15px;
+  opacity: 0.9;
+}
+
+.overview-info {
+  width: 220px;
+  margin: 16px;
+}
+
+.movie-container:hover .overview {
+  display: flex;
+}
+
+*/
