@@ -97,6 +97,20 @@ a {
   font-size: 30px;
 }
 
+.not-found {
+  margin-left: 170px;
+  margin-top: 60px;
+}
+
+.not-found p {
+  font-size: 25px;
+  margin: 10px 0px;
+}
+
+.go-to-main {
+  color: red;
+  cursor: pointer;
+}
 /*
 .overview {
   width: 100%;
