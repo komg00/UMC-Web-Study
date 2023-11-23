@@ -24,7 +24,7 @@ export default function Header() {
           <Link to="/celebrity">인물</Link>
         </li>
         <LoginControl>
-          <Link to="/Login">로그인</Link>
+          <Link to="/login"></Link>
         </LoginControl>
       </ul>
     </header>

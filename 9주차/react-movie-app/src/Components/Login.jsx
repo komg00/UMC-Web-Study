@@ -1,68 +1,94 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
+import { useDispatch } from 'react-redux';
+import { setUserInfo } from '../reducer/action';
+import axios from 'axios';
 
 export default function Login() {
-
+  const dispatch = useDispatch();
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [emailMsg, setEmailMsg] = useState('');
   const [passwordMsg, setPasswordMsg] = useState('');
 
-  const validateEmail = (email) => {
-    return email
-      .toLowerCase()
-      .match(/([\w-.]+)@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([\w-]+\.)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$/);
-  };
-
-  const validatePassword = (password) => {
-    return password
-      .toLowerCase()
-      .match(/^(?=.*[a-zA-Z])(?=.*[!@#$%^*+=-])(?=.*[0-9]).{8,25}$/);
-  };
-
   const onSubmitHandler = e => {
     e.preventDefault();
   }
   
-  const isEmailValid = validateEmail(email);
-  const isPasswordValid = validatePassword(password);
-  const isAllValid = isEmailValid && isPasswordValid;
+  const navigate = useNavigate();
 
+  const handleLogin = async () => {
+    try {
+      if (!email || !password) {
+        alert('아이디와 비밀번호를 입력하세요.');
+        return;
+      }
+      const endpoint = 'http://localhost:8000/user/login';
+      const requestBody = {
+        id: email,
+        pw: password,
+      };
+
+      const response = await axios.post(endpoint, requestBody, {
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${localStorage.getItem('AccessToken')}`,
+        },
+      })
+        if (response.data.result.AccessToken) {
+          localStorage.setItem('token', response.data.result.AccessToken);
+          localStorage.setItem('id', requestBody.id);
+          alert('성공적으로 로그인했습니다');
+          navigate("/");
+        }
+      //console.log(response.data);
+      //console.log(response);
+      dispatch(setUserInfo(response.data.result));
+    } catch(error) {
+      console.log(error);
+      alert('ID 또는 비밀번호가 틀립니다.');
+    }
+  };
+  
+  useEffect(() => {
+
+  }, [dispatch]);
+  
+  
   const onEmailHandler = e => {
     const curremail = e.target.value;
     setEmail(curremail);
 
-    if (!validateEmail(curremail)) {
-      setEmailMsg('올바른 이메일을 입력해주세요.');
+    if (!curremail) {
+      setEmailMsg('올바른 아이디를 입력해주세요.');
     } else {
       setEmailMsg("");
     }
-    console.log(isEmailValid);
   }
 
   const onPasswordHandler = e => {
     const currpwd = e.target.value;
     setPassword(currpwd);
 
-    if (!validatePassword(currpwd)) {
-      setPasswordMsg('영문, 숫자, 특수문자 포함 8자 이상 입력해주세요.');
+    if (!currpwd) {
+      setPasswordMsg('올바른 비밀번호를 입력해 주세요.');
     } else {
       setPasswordMsg('');
     }
-    console.log(isPasswordValid);
   }
  
   return (
     <div className='login-page'>
-      <h2 className='login-title'>이메일과 비밀번호를 입력해주세요</h2>
+      <h2 className='login-title'>아이디와 비밀번호를 입력해주세요</h2>
       <form className='login-form' type='submit' onSubmit={onSubmitHandler}>
-        <label>이메일 주소</label>
-        <input type='email' className='email' placeholder="이메일 주소" onChange={onEmailHandler}/>
+        <label>아이디</label>
+        <input type='text' className='email' placeholder="아이디" onChange={onEmailHandler}/>
         <p className='login-text'>{emailMsg}</p>
         <label>비밀번호</label>
-        <input type='password' className='password' placeholder='영문, 숫자, 특수문자 포함 8자 이상' onChange={onPasswordHandler}/>
+        <input type='password' className='password' placeholder='비밀번호' onChange={onPasswordHandler}/>
         <p className='login-text'>{passwordMsg}</p>
-        <button className='login-btn' type='submit' style={{backgroundColor: isAllValid ? "#032541" : "gray"}}>확인</button>
+        <button className='login-btn' type='submit' onClick={handleLogin} style={{backgroundColor: (email&& password) ? "#032541" : "gray"}}>확인</button>
       </form>      
     </div>
-  )
-}
+  );
+};

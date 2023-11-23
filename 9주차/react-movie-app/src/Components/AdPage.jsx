@@ -5,7 +5,7 @@ class AdPage extends Component {
   constructor(props) {
     super(props);
     this.state={
-      showAd: false,
+      showAd: true,
     };
   }
 
