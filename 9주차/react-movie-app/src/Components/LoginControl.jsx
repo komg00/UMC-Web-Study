@@ -6,27 +6,31 @@ export default function LoginControl() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setIsLoggedin(!!localStorage.getItem('token'));
-  }, []);
-  const handleLoginClick = () => {
-    navigate('');
-    setIsLoggedin(true);
-  };
+    const token = localStorage.getItem('token');
+    setIsLoggedin(!!token);
+    console.log("useEffect", !!token);
+  });
 
-  const handleLogoutClick = () => {
-    localStorage.clear();
-    setIsLoggedin(false);
-    navigate('');
-    alert('로그아웃했습니다');
-  };
+  const clickHandler = () => {
+    if(isLoggedin) {
+      localStorage.clear();
+      alert("로그아웃했습니다");
+      setIsLoggedin(false);
+      navigate("");
+    }
+    else { 
+      setIsLoggedin(true);
+      navigate("");
+    }
+  }
   return (
     <div className='login'>
       <Link to="/login">
-        <button className='login-control' onClick={isLoggedin ? handleLogoutClick : handleLoginClick}>
-          {isLoggedin ? '로그아웃' : '로그인'}
-        </button>
-        <p>{isLoggedin ? '환영합니다!' : '로그인 해주세요!'}</p>
+      <button className='login-control' onClick={clickHandler}>
+        {isLoggedin ? '로그아웃' : '로그인'}
+      </button>
       </Link>
+      <p className='login-msg'>{isLoggedin ? '환영합니다!' : '로그인 해주세요!'}</p>
     </div>
   )
 }

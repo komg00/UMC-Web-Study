@@ -1,7 +1,6 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import LoginControl from './LoginControl';
-
 export default function Header() {
   return (
     <header className='header'>
@@ -22,6 +21,9 @@ export default function Header() {
         </li>
         <li className='list3'>
           <Link to="/celebrity">인물</Link>
+        </li>
+        <li className='list4'>
+          <Link to="/movie2">movie</Link>
         </li>
         <LoginControl>
           <Link to="/login"></Link>

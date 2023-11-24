@@ -1,20 +1,30 @@
 import React from "react";
-import Contents from "../Components/Contents";
-import { programs } from "../tvDummy"
+//import { useNavigate } from "react-router-dom";
+import { programs } from "../tvDummy";
 
-export default function Movies() {
+const PosterUrl = "https://image.tmdb.org/t/p/w1280/";
+
+function TV()  {
+  //const navigate = useNavigate();
+
+  const onClickImg = () => {
+    //navigate(`/tv/${name}`, { name, poster_path, vote_average });
+  };
+
   return (
-    <div className="container" >
-      {programs.results.map((item) => (
-        <Contents
-          key={item.id}
-          tv_name={item.name}
-          tv_poster_path={item.poster_path}
-          tv_vote_average={item.vote_average} 
-        />
-      ))}
+    <div className="container">
+      
+        {programs.results.map((item) => (
+          <div key={item.id} className="movie-container" onClick={() => onClickImg(item)}>
+            <img src={PosterUrl + item.poster_path} alt={item.name} />
+            <div className='info'>
+              <h4>{item.name}</h4>
+              <span>{item.vote_average}</span>
+            </div>
+          </div>
+        ))}
     </div>
   );
-};
+}
 
-
+export default TV;

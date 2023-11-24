@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../reducer/action';
 import axios from 'axios';
-
 export default function Login() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState('');
@@ -38,11 +37,11 @@ export default function Login() {
         if (response.data.result.AccessToken) {
           localStorage.setItem('token', response.data.result.AccessToken);
           localStorage.setItem('id', requestBody.id);
-          alert('성공적으로 로그인했습니다');
+          alert('성공적으로 로그인했습니다!');
           navigate("/");
-        }
-      //console.log(response.data);
-      //console.log(response);
+        } 
+      console.log(response.data);
+      console.log(response);
       dispatch(setUserInfo(response.data.result));
     } catch(error) {
       console.log(error);

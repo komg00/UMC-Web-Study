@@ -7,9 +7,11 @@ import Home from "./pages/Home";
 import Celebrity from "./pages/Celebrity";
 import TV from "./pages/TV";
 import MovieDetail from "./pages/MovieDetail";
-import Movie from "./pages/Movie";
+import Movies from "./pages/Movies";
 import NotFound from "./pages/NotFound";
 import Login from "./Components/Login";
+import MoviePage from "./Components/MoviePage";
+
 function App() {
   return (
     <Provider store={store}>
@@ -18,13 +20,14 @@ function App() {
           <Header />
           <Routes>
             <Route path="" element={<Home />} />
-            <Route path="/movie" element={<Movie />} />
+            <Route path="/movie" element={<Movies />} />
             <Route path="/tv" element={<TV />} />
             <Route path="/celebrity" element={<Celebrity />} />
             <Route path="/movie/:title" element={<MovieDetail />} />
             <Route path="/tv/:tv_name" element={<MovieDetail />} />
             <Route path="*" element={<NotFound />} />
             <Route path="/login" element={<Login />} />
+            <Route path="/movie2" element={<MoviePage />} />
           </Routes>
         </BrowserRouter>
       </div>
