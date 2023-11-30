@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import axios from 'axios';
-const PosterUrl = 'https://image.tmdb.org/t/p/w500/';
+import Movie from './Movie';
 
 export default function MoviePage() {
   const [movies, setMovies] = useState([]);
@@ -25,10 +25,6 @@ export default function MoviePage() {
       })
   }, [currentPage]);
 
-  const onClickImg = (movie) => {
-    console.log('Clicke on movie:', movie);
-  };
-
   const handlePageChange = (newPage) => {
     setCurrentPage(newPage);
     console.log(newPage);
@@ -36,14 +32,13 @@ export default function MoviePage() {
 
   return (
     <div className="container" >
-      {movies.map((movie) => (
-        <div key={movie.id} className='movie-container' onClick={() => onClickImg(movie)}>
-          <img src={PosterUrl + movie.poster_path} alt={movie.title} />
-          <div className='info'>
-            <h4>{movie.title}</h4>
-            <span>{movie.vote_average}</span>
-          </div>
-        </div>
+      {movies.map((item) => (
+        <Movie
+        key={item.id}
+        title={item.title}
+        poster_path={item.poster_path}
+        vote_average={item.vote_average}
+      />
       ))}
       <div className='pagination'>
         {currentPage > 1 && <button onClick={() => handlePageChange(currentPage - 1)}>
