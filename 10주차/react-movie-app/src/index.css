@@ -176,6 +176,16 @@ a {
   background-color: navy;
   color: white;
 }
+
+.kakaobutton {
+  margin: 15px 25px;
+  width: 380px;
+  height: 100px;
+  border: none;
+  border-radius: 10px;
+  background-image: url("../src/img/kakao_login.png");
+  background-size: 100%;
+}
 /*
 .overview {
   width: 100%;

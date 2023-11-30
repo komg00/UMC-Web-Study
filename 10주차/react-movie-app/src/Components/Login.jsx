@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useDispatch } from 'react-redux';
 import { setUserInfo } from '../reducer/action';
 import axios from 'axios';
+
 const K_REST_API_KEY = process.env.REACT_APP_K_REST_API_KEY;
 const K_REDIRECT_URI = process.env.REACT_APP_K_REDIRECT_URI;
 const kakaoURL = `https://kauth.kakao.com/oauth/authorize?client_id=${K_REST_API_KEY}&redirect_uri=${K_REDIRECT_URI}&response_type=code`;
@@ -86,7 +87,7 @@ export default function Login() {
   return (
     <div className='login-page'>
       <h2 className='login-title'>아이디와 비밀번호를 입력해주세요</h2>
-      <form className='login-form' type='submit' onSubmit={onSubmitHandler}>
+      <form className='login-form' onSubmit={onSubmitHandler}>
         <label>아이디</label>
         <input type='text' className='email' placeholder="아이디" onChange={onEmailHandler}/>
         <p className='login-text'>{emailMsg}</p>
@@ -95,7 +96,7 @@ export default function Login() {
         <p className='login-text'>{passwordMsg}</p>
         <button className='login-btn' type='submit' onClick={handleLogin} style={{backgroundColor: (email&& password) ? "#032541" : "gray"}}>확인</button>
       </form>  
-      <button onClick={handleKakaoLogin} className='kakaobutton'>카카오 로그인</button>    
+      <button onClick={handleKakaoLogin} className='kakaobutton' />   
     </div>
   );
 };

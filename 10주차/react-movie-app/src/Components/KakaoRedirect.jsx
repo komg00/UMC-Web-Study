@@ -1,37 +1,50 @@
-import React from 'react'
+import React, { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useEffect } from 'react';
-import Home from "../pages/Home";
+import { useDispatch } from 'react-redux';
+import { setAccessToken, loginSuccess } from "../reducer/action";
+import { BeatLoader } from 'react-spinners';
 
-export default function KakaoRedirect() {
+const KakaoRedirect = () => {
   const navigate = useNavigate();
-  const code = new URL(window.location.href).searchParams.get("code");
-  console.log(code);
-  const username = localStorage.getItem('name');
+  const dispatch = useDispatch();
+
   useEffect(() => {
-    const headers = {
-      "Content-type": "application/x-www-form-urlencoded",
+    const fetchAccessToken = async () => {
+      try {
+        const code = new URL(window.location.href).searchParams.get("code");
+
+        const response = await fetch(`http://localhost:8000/kakao?code=${code}`, {
+          method: "POST",
+          headers: {
+            "Content-type": "application/x-www-form-urlencoded",
+            'Authorization': `Bearer ${localStorage.getItem('token')}`,
+          },
+        });
+
+        const data = await response.json();
+
+        console.log(data);
+        localStorage.setItem('name', data.result.name);
+        localStorage.setItem('token', data.result.token);
+        // 토큰을 Redux 스토어에 저장
+        dispatch(setAccessToken(data.result.accessToken));
+        dispatch(loginSuccess(data.result.name));
+
+        navigate("/");
+      } catch (error) {
+        console.error("카카오 로그인 실패", error);
+        navigate('/');
+      }
     };
 
-    fetch(`http://localhost:8000/kakao?code=${code}`, {
-      method: "POST",
-      headers: headers,
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        console.log(data);
-        console.log(data.result.name);
-        localStorage.setItem('name', data.result.name);
-      })
-      .catch((error) => {
-        console.error("오류 발생", error);
-      });
-  }, [code, navigate])
+    fetchAccessToken();
+  }, [dispatch, navigate]);
 
-  
   return (
     <div>
-      {username ? <Home /> : <h1>로그인 중입니다.</h1>}
+      <BeatLoader color="#36d7b7" />
     </div>
-  )
-}
+  );
+};
+
+export default KakaoRedirect;
